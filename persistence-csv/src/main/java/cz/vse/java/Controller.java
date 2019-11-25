@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Controller {
 
-    private static final String SAVE_FILE_NAME = "persons.bin";
+    private static final String SAVE_FILE_NAME = "persons.csv";
     private List<Person> persons = new ArrayList<>();
 
     @FXML
@@ -28,11 +28,47 @@ public class Controller {
     private TableView<Person> personsTable;
 
     public void loadData(ActionEvent actionEvent) {
+        persons = new ArrayList<>();
 
+        try {
+            BufferedReader csvReader = new BufferedReader(new FileReader(SAVE_FILE_NAME));
+            String row = csvReader.readLine();
+
+            while (row != null) {
+                String[] data = row.split(",");
+
+                Person person = new Person();
+                person.setFirstName(data[0]);
+                person.setLastName(data[1]);
+                person.setAge(Integer.parseInt(data[2]));
+                persons.add(person);
+
+                row = csvReader.readLine();
+            }
+            csvReader.close();
+
+            personsTable.getItems().clear();
+            personsTable.getItems().addAll(persons);
+        } catch (IOException e) {
+            showError("Error loading the data: "+e.getMessage());
+        }
     }
 
     public void saveData(ActionEvent actionEvent) {
+        try {
+            FileWriter csvWriter = new FileWriter(Controller.SAVE_FILE_NAME);
+            for (Person person : persons) {
+                csvWriter.append(person.getFirstName()).append(",");
+                csvWriter.append(person.getLastName()).append(",");
+                csvWriter.append(String.valueOf(person.getAge()));
+                csvWriter.append("\n");
+            }
 
+            csvWriter.flush();
+            csvWriter.close();
+        } catch (IOException e) {
+            showError("Error saving the data: "+e.getMessage());
+        }
     }
 
     public void addPerson(ActionEvent actionEvent) {
