@@ -16,6 +16,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.TitledPane?>
 <VBox prefHeight="600.0" prefWidth="800.0"
       spacing="10"
       xmlns="http://javafx.com/javafx/11.0.1"
@@ -25,21 +27,23 @@
     <padding>
         <Insets top="10" bottom="10" right="10" left="10"/>
     </padding>
-    <VBox spacing="10">
-        <HBox spacing="10">
-            <Label prefWidth="58">First Name</Label>
-            <TextField fx:id="firstName"/>
-        </HBox>
-        <HBox spacing="10">
-            <Label prefWidth="58">Last Name</Label>
-            <TextField fx:id="lastName"/>
-        </HBox>
-        <HBox spacing="10">
-            <Label prefWidth="58">Age</Label>
-            <TextField fx:id="age"/>
-        </HBox>
-        <Button onAction="#addPerson">Add person</Button>
-    </VBox>
+    <TitledPane text="Add a new person">
+        <VBox spacing="10">
+            <HBox spacing="10">
+                <Label prefWidth="58">First Name</Label>
+                <TextField fx:id="firstName"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label prefWidth="58">Last Name</Label>
+                <TextField fx:id="lastName"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label prefWidth="58">Age</Label>
+                <TextField fx:id="age"/>
+            </HBox>
+            <Button onAction="#addPerson">Add person</Button>
+        </VBox>
+    </TitledPane>
 
     <TableView fx:id="personsTable">
         <columns>
