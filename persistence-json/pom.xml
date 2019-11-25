@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>persistence-json</artifactId>
-
+    <!--    https://github.com/google/gson-->
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+    </dependencies>
 
 </project>

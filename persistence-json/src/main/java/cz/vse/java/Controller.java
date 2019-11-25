@@ -1,5 +1,7 @@
 package cz.vse.java;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,13 +12,18 @@ import javafx.scene.control.TextField;
 import org.omg.CORBA.Environment;
 
 import java.io.*;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Controller {
 
     private static final String SAVE_FILE_NAME = "persons.json";
     private List<Person> persons = new ArrayList<>();
+    private Gson gson = new Gson();
 
     @FXML
     private TextField firstName;
@@ -28,11 +35,26 @@ public class Controller {
     private TableView<Person> personsTable;
 
     public void loadData(ActionEvent actionEvent) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(SAVE_FILE_NAME));
+            String jsonRaw = String.join("\n", lines);
+            Type listOfPersonsType = new TypeToken<List<Person>>() {}.getType();
+            persons = gson.fromJson(jsonRaw, listOfPersonsType);
 
+            personsTable.getItems().clear();
+            personsTable.getItems().addAll(persons);
+        } catch (IOException e) {
+            showError("Error while saving data: " + e.getMessage());
+        }
     }
 
     public void saveData(ActionEvent actionEvent) {
-
+        String json = gson.toJson(persons);
+        try {
+            Files.write(Paths.get(SAVE_FILE_NAME), json.getBytes());
+        } catch (IOException e) {
+            showError("Error while saving data: " + e.getMessage());
+        }
     }
 
     public void addPerson(ActionEvent actionEvent) {
