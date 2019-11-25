@@ -2,6 +2,7 @@ package cz.vse.java;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class Controller {
     private TextField lastName;
     @FXML
     private TextField age;
+    @FXML
+    private TableView personsTable;
 
     public void loadData(ActionEvent actionEvent) {
         // TODO Implement me!
@@ -31,6 +34,13 @@ public class Controller {
         person.setFirstName(firstName.getText());
         person.setLastName(lastName.getText());
         person.setAge(Integer.parseInt(age.getText()));
-        this.persons.add(person);
+        persons.add(person);
+
+        firstName.setText("");
+        lastName.setText("");
+        age.setText("");
+        firstName.requestFocus();
+
+        this.personsTable.getItems().add(person);
     }
 }
