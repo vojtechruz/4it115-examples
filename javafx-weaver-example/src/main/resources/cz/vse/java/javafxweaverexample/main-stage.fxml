@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cz.vse.java.javafxweaverexample.MyController"
+            prefHeight="100.0" prefWidth="350.0" spacing="10" alignment="CENTER">
+
+    <Label fx:id="weatherLabel"/>
+    <Button onAction="#loadWeatherForecast">Get weather</Button>
+</VBox>
