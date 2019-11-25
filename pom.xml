@@ -20,6 +20,7 @@
         <module>persistence-empty</module>
         <module>persistence-serialization</module>
         <module>persistence-csv</module>
+        <module>persistence-json</module>
     </modules>
 
 </project>
