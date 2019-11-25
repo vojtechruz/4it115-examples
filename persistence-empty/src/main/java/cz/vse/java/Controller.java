@@ -19,7 +19,7 @@ public class Controller {
     @FXML
     private TextField age;
     @FXML
-    private TableView personsTable;
+    private TableView<Person> personsTable;
 
     public void loadData(ActionEvent actionEvent) {
         // TODO Implement me!

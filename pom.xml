@@ -18,6 +18,7 @@
     <modules>
         <module>javafx-weaver-example</module>
         <module>persistence-empty</module>
+        <module>persistence-serialization</module>
     </modules>
 
 </project>
