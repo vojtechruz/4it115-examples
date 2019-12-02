@@ -21,6 +21,7 @@
         <module>persistence-serialization</module>
         <module>persistence-csv</module>
         <module>persistence-json</module>
+        <module>persistence-jdbc</module>
     </modules>
 
 </project>
