@@ -1,0 +1,1 @@
+First name: Pepa', 'Novak', '12'); DROP TABLE PERSONS;  --

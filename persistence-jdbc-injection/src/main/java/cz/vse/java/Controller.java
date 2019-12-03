@@ -16,7 +16,6 @@ import java.util.List;
 public class Controller {
 
     private static final String SQL_SELECT = "SELECT * from PERSONS";
-    private static final String SQL_INSERT = "INSERT INTO PERSONS (FIRST_NAME, LAST_NAME, AGE) VALUES (?,?,?)";
     private static final String CONNECTION_STRING = "jdbc:postgresql://127.0.0.1:5432/postgres";
     private static final String USER = "postgres";
     private static final String PASSWORD = "heslo";
@@ -65,15 +64,17 @@ public class Controller {
 
     public void saveData(ActionEvent actionEvent) {
         try (Connection conn = DriverManager.getConnection(CONNECTION_STRING, USER, PASSWORD);
-             PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT)) {
+        Statement statement = conn.createStatement();) {
 
             for (Person person : this.persons) {
-                preparedStatement.setString(1, person.getFirstName());
-                preparedStatement.setString(2, person.getLastName());
-                preparedStatement.setInt(3, person.getAge());
-                preparedStatement.addBatch();
+                String query = "INSERT INTO PERSONS (FIRST_NAME, LAST_NAME, AGE) VALUES ('";
+                query += person.getFirstName()+"','";
+                query += person.getLastName()+"','";
+                query += person.getAge()+"')";
+                System.out.println("Executing query: "+query);
+                statement.addBatch(query);
             }
-            int[] result = preparedStatement.executeBatch();
+            int[] result = statement.executeBatch();
         } catch (SQLException e) {
             System.err.format("Error reading persons: %s\n%s", e.getSQLState(), e.getMessage());
         }
