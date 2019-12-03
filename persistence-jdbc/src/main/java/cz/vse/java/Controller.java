@@ -59,7 +59,7 @@ public class Controller {
             }
 
         } catch (SQLException e) {
-            System.err.format("Error reading persons: %s\n%s", e.getSQLState(), e.getMessage());
+            showError("Error while loading data");
         }
     }
 
@@ -75,7 +75,7 @@ public class Controller {
             }
             int[] result = preparedStatement.executeBatch();
         } catch (SQLException e) {
-            System.err.format("Error reading persons: %s\n%s", e.getSQLState(), e.getMessage());
+            showError("Error while saving data");
         }
     }
 

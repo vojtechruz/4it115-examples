@@ -58,25 +58,25 @@ public class Controller {
             }
 
         } catch (SQLException e) {
-            System.err.format("Error reading persons: %s\n%s", e.getSQLState(), e.getMessage());
+            showError("Error while loading data");
         }
     }
 
     public void saveData(ActionEvent actionEvent) {
         try (Connection conn = DriverManager.getConnection(CONNECTION_STRING, USER, PASSWORD);
-        Statement statement = conn.createStatement();) {
+             Statement statement = conn.createStatement();) {
 
             for (Person person : this.persons) {
                 String query = "INSERT INTO PERSONS (FIRST_NAME, LAST_NAME, AGE) VALUES ('";
-                query += person.getFirstName()+"','";
-                query += person.getLastName()+"','";
-                query += person.getAge()+"')";
-                System.out.println("Executing query: "+query);
+                query += person.getFirstName() + "','";
+                query += person.getLastName() + "','";
+                query += person.getAge() + "')";
+                System.out.println("Executing query: " + query);
                 statement.addBatch(query);
             }
             int[] result = statement.executeBatch();
         } catch (SQLException e) {
-            System.err.format("Error reading persons: %s\n%s", e.getSQLState(), e.getMessage());
+            showError("Error while saving data");
         }
     }
 
