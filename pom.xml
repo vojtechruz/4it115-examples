@@ -23,7 +23,6 @@
         <module>persistence-json</module>
         <module>persistence-jdbc</module>
         <module>persistence-jdbc-injection</module>
-        <module>persistence-orm</module>
     </modules>
 
 </project>
