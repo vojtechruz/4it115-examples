@@ -1,53 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="600.0" prefWidth="321.0"
-      spacing="10"
-      xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cz.vse.java.Controller"
->
+<GridPane prefWidth="321.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.java.Controller">
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints vgrow="NEVER"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
     <padding>
-        <Insets top="10" bottom="10" right="10" left="10"/>
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
-    <TitledPane text="Add a new person">
-        <VBox spacing="10">
-            <HBox spacing="10">
-                <Label prefWidth="58">First Name</Label>
-                <TextField fx:id="firstName"/>
-            </HBox>
-            <HBox spacing="10">
-                <Label prefWidth="58">Last Name</Label>
-                <TextField fx:id="lastName"/>
-            </HBox>
-            <HBox spacing="10">
-                <Label prefWidth="58">Age</Label>
-                <TextField fx:id="age"/>
-            </HBox>
-            <Button onAction="#addPerson">Add person</Button>
-        </VBox>
+    <TitledPane GridPane.rowIndex="0" text="Add a new person">
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="60" prefWidth="60" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <Label>First Name</Label>
+            <TextField fx:id="firstName" GridPane.columnIndex="1" />
+            <Label GridPane.rowIndex="1">Last Name</Label>
+            <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label GridPane.rowIndex="2">Age</Label>
+            <TextField fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" onAction="#addPerson" prefWidth="100" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">Add person</Button>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
     </TitledPane>
 
-    <TableView fx:id="personsTable">
+    <TableView fx:id="personsTable" GridPane.rowIndex="1">
         <columns>
-            <TableColumn text="First Name" prefWidth="120">
+            <TableColumn prefWidth="120" text="First Name">
                 <cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory>
             </TableColumn>
-            <TableColumn text="Last Name" prefWidth="120">
+            <TableColumn prefWidth="120" text="Last Name">
                 <cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory>
             </TableColumn>
-            <TableColumn text="Age" prefWidth="60">
+            <TableColumn prefWidth="60" text="Age">
                 <cellValueFactory><PropertyValueFactory property="age" /></cellValueFactory>
             </TableColumn>
         </columns>
     </TableView>
 
-    <HBox alignment="CENTER" spacing="10">
+    <HBox alignment="CENTER_RIGHT" spacing="10"  GridPane.rowIndex="2">
         <Button onAction="#saveData">Save</Button>
         <Button onAction="#loadData">Load</Button>
     </HBox>
-</VBox>
+</GridPane>
