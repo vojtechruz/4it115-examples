@@ -29,7 +29,8 @@
             <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label GridPane.rowIndex="2">Age</Label>
             <TextField fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button alignment="CENTER" onAction="#addPerson" prefWidth="100" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">Add person</Button>
+            <Button alignment="CENTER" onAction="#addPerson" prefWidth="100" GridPane.columnSpan="2" GridPane.halignment="RIGHT"
+                    fx:id="addPerson" GridPane.rowIndex="3">Add person</Button>
             <rowConstraints>
                 <RowConstraints />
                 <RowConstraints />

@@ -26,6 +26,7 @@ public class Start extends Application
         Parent rootComponent = loader.load();
 
         Controller controller = loader.getController();
+        controller.init();
         controller.setPersistenceProvider(new CSVPersistenceProvider());
 
         Scene scene = new Scene(rootComponent);

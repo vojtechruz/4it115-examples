@@ -2,12 +2,10 @@ package cz.vse.java;
 
 import cz.vse.java.persistence.PersistenceException;
 import cz.vse.java.persistence.PersistenceProvider;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,50 @@ public class Controller {
     @FXML
     private TextField age;
     @FXML
+    private Button addPerson;
+    @FXML
     private TableView<Person> personsTable;
+
+
+    public void init() {
+        // Age should be integer only
+        addPerson.setDisable(true);
+        age.textProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    validateInputs();
+                    if (newValue.equals("")) {
+                        return;
+                    }
+
+                    //Check if new value is integer, if not, revert to old val
+                    try {
+                        Integer.parseInt(newValue);
+                    } catch (NumberFormatException e) {
+                        age.setText(oldValue);
+                    }
+                }
+        );
+
+        firstName.setOnKeyTyped(event -> {
+            validateInputs();
+        });
+        lastName.setOnKeyTyped(event -> {
+            validateInputs();
+        });
+    }
+
+    private void validateInputs() {
+        if(firstName.getText().equals("") ||
+                lastName.getText().equals("") ||
+                age.getText().equals("")) {
+            addPerson.setDisable(true);
+            addPerson.setTooltip(new Tooltip("Please fill all the fields first"));
+        } else {
+            addPerson.setTooltip(null);
+            addPerson.setDisable(false);
+        }
+
+    }
 
     public void loadData(ActionEvent actionEvent) {
         try {
@@ -48,7 +89,9 @@ public class Controller {
         Person person = new Person();
         person.setFirstName(firstName.getText());
         person.setLastName(lastName.getText());
-        person.setAge(Integer.parseInt(age.getText()));
+        if(age.getText() != null && !age.getText().equals("")) {
+            person.setAge(Integer.parseInt(age.getText()));
+        }
         persons.add(person);
 
         firstName.setText("");
