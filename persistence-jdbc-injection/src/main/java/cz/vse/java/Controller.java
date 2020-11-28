@@ -58,7 +58,7 @@ public class Controller {
             }
 
         } catch (SQLException e) {
-            showError("Error while loading data");
+            showError("Error while loading data: "+e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class Controller {
             }
             int[] result = statement.executeBatch();
         } catch (SQLException e) {
-            showError("Error while saving data");
+            showError("Error while saving data: "+e.getMessage());
         }
     }
 
