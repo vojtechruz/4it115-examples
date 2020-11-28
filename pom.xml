@@ -17,9 +17,8 @@
 
     <modules>
         <module>javafx-weaver-example</module>
-        <module>persistence-empty</module>
+        <module>persistence</module>
         <module>persistence-serialization</module>
-        <module>persistence-csv</module>
         <module>persistence-json</module>
         <module>persistence-jdbc</module>
         <module>persistence-jdbc-injection</module>

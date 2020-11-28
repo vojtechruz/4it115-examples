@@ -1,5 +1,6 @@
 package cz.vse.java;
 
+import cz.vse.java.persistence.CSVPersistenceProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,10 +25,13 @@ public class Start extends Application
         loader.setLocation(getClass().getResource("/scene.fxml"));
         Parent rootComponent = loader.load();
 
+        Controller controller = loader.getController();
+        controller.setPersistenceProvider(new CSVPersistenceProvider());
+
         Scene scene = new Scene(rootComponent);
         primaryStage.setScene(scene);
 
-        primaryStage.setTitle("Serialization example");
+        primaryStage.setTitle("Persistence example");
 
         primaryStage.show();
     }
