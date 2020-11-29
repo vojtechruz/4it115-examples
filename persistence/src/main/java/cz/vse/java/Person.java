@@ -1,6 +1,13 @@
 package cz.vse.java;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person
+        // This is needed for serialization to work
+        implements Serializable {
+
+    // Serialization version
+    static final long serialVersionUID=1L;
 
     private String firstName;
     private String lastName;

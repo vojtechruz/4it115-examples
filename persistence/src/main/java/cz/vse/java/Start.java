@@ -2,6 +2,7 @@ package cz.vse.java;
 
 import cz.vse.java.persistence.CSVPersistenceProvider;
 import cz.vse.java.persistence.JSONPersistenceProvider;
+import cz.vse.java.persistence.SerializationPersistenceProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +29,7 @@ public class Start extends Application
 
         Controller controller = loader.getController();
         controller.init();
-        controller.setPersistenceProvider(new JSONPersistenceProvider());
+        controller.setPersistenceProvider(new SerializationPersistenceProvider());
 
         Scene scene = new Scene(rootComponent);
         primaryStage.setScene(scene);
