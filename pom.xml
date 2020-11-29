@@ -18,9 +18,7 @@
     <modules>
         <module>javafx-weaver-example</module>
         <module>persistence</module>
-        <module>persistence-serialization</module>
         <module>persistence-jdbc</module>
-        <module>persistence-jdbc-injection</module>
     </modules>
 
 </project>
