@@ -18,7 +18,6 @@
     <modules>
         <module>javafx-weaver-example</module>
         <module>persistence</module>
-        <module>persistence-jdbc</module>
     </modules>
 
 </project>
